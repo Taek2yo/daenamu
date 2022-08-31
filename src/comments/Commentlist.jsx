@@ -4,20 +4,19 @@ import styled from "styled-components";
 import { __getComment } from "../redux/modules/commentListSlice";
 import AddComments from "./AddComments";
 import CommentCard from "./CommentCard"
+import { useParams } from "react-router-dom";
 
 const CommentList = () => {
     const dispatch = useDispatch();
     const { isLoading, error, comments } = useSelector((state) => state.commentlist);
-    const state = useSelector((state)=>state)
-   
+    let { id } = useParams();
+    
     useEffect(() => {
         dispatch(__getComment());
-    }, []);
+    }, [dispatch]);
 
-    useEffect(()=>{console.log(comments)},[comments]
-        
-    )
-    
+    useEffect(()=>{},[comments])
+ 
     if (isLoading) {
         return <>로딩중..</>
     }
@@ -25,13 +24,18 @@ const CommentList = () => {
         return <>{error.message}</>
     }
 
-    //console.log(comments);
+    let thisComments = comments.filter((comment)=>{
+        return comment.comment === id;
+    })
+    
+
+  
     return (
             <StContainer>
                 <AddComments />
                 <StCommentList>
-                    {comments?.map((comment) => {
-                        //console.log(comment)
+                    {thisComments?.map((comment) => {
+                        
                         return (
                             <CommentCard comment={comment} key={comment.id} />
                         )

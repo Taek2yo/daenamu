@@ -5,7 +5,7 @@ export const __getComment = createAsyncThunk(
   "GET_COMMENT",
   async (payload, thunkAPI) => {
     try {
-      const data = await axios.get(`${VUE_APP_SERVER}comments`);
+      const data = await axios.get("http://localhost:3001/comments");
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -18,22 +18,13 @@ export const __addComment = createAsyncThunk(
   "ADD_COMMENT",
   async (arg, thunkAPI) => {
     try {
-      const { data } = await axios.post(`${VUE_APP_SERVER}comments`, arg);
+      const { data } = await axios.post("http://localhost:3001/comments", arg);
       return thunkAPI.fulfillWithValue(data);
     } catch (e) {
       return thunkAPI.rejectWithValue(e);
     }
   }
 );
-
-/* export const __deleteComment = createAsyncThunk(
-  "DELETE_COMMENT",
-  async (arg, thunkAPI) => {
-    try
-  }
-) */
-
-
 
 const initialState = {  
     comments: [],
@@ -51,10 +42,18 @@ export const commentListSlice = createSlice({
     removeComment(state, action){
       const index = state.comments.findIndex(comments =>  comments.id === action.payload);
       state.comments.splice(index,1);
-      console.log(action.payload)
-      axios.delete(`${VUE_APP_SERVER}comments/${action.payload}`);
-  }
+      axios.delete(`http://localhost:3001/comments/${action.payload}`);
+    },
+    
+    updataComment: (state, action) => {
+      const index = state.comments.findIndex(comments =>  comments.id === action.payload.id);
+      state.comments.splice(index,1,action.payload);              // 
+      axios.patch(`http://localhost:3001/comments/${action.payload.id}`, action.payload)
+    }
+
   },
+
+  // extraReducer 기능 구현은 됬지만, 사용은 하지않았음
   extraReducers: {
     // 댓글 추가
     [__addComment.fulfilled]: (state, action) => {
@@ -83,8 +82,9 @@ export const commentListSlice = createSlice({
       state.isLoading = false; // 에러가 발생했지만, 네트워크 요청이 끝났으니, false로 변경합니다.
       state.error = action.payload; // catch 된 error 객체를 state.error에 넣습니다.
     },
-  },
+  }  
 });
 
-export const { removeComment } = commentListSlice.actions;
+
+export const { removeComment,updataComment } = commentListSlice.actions;
 export default commentListSlice.reducer;
