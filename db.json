@@ -1,39 +1,24 @@
 {
   "cards": [
     {
-
       "id": "42c2f7e8-a1b3-419f-872f-43a289930a4a",
       "name": "asgsd",
       "title": "gsga",
       "desc": "gfdgdfg"
+    },
+    {
+      "id": "1ecb4be7-8fcc-4f1a-a5d1-5d3f1cf1e8e7",
+      "name": "SD",
+      "title": "AFSDF",
+      "desc": "DFSDF"
     }
   ],
   "comments": [
     {
-      "id": 1,
-      "username": "",
-      "content": ""
-    },
-    {
-      "comment": "1",
-      "username": "asd",
-      "content": "asd",
-      "id": 2
+      "comment": "42c2f7e8-a1b3-419f-872f-43a289930a4a",
+      "username": "dsfasdf",
+      "content": "asfsdf",
+      "id": 1
     }
   ]
-
-      "id": 1,
-      "name": "pisi",
-      "title": "오늘 재미있는 일이 있었어요",
-      "desc": "무슨 일일까요?"
-    },
-    {
-      "id": "c932fdd4-13f5-4553-99ce-18112cc0e014",
-      "name": "asd",
-      "title": "asdf",
-      "desc": "asdf"
-    }
-  ],
-  "comments": []
-
 }
