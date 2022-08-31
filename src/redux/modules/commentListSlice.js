@@ -26,7 +26,7 @@ export const __addComment = createAsyncThunk(
   }
 );
 
-export const __deleteComment = createAsyncThunk(
+/* export const __deleteComment = createAsyncThunk(
   "DELETE_COMMENT",
   async (arg, thunkAPI) => {
     try {
@@ -36,9 +36,9 @@ export const __deleteComment = createAsyncThunk(
       return thunkAPI.rejectWithValue(e)
     }
   }
-)
+) */
 
-export const __editComment = createAsyncThunk(
+/* export const __editComment = createAsyncThunk(
   "UPDATE_COMMENT",
   async (arg, thunkAPI) => {
     try {
@@ -48,7 +48,7 @@ export const __editComment = createAsyncThunk(
       return thunkAPI.rejectWithValue(e)
     }
   }
-)
+) */
 
 
 
@@ -68,10 +68,16 @@ export const commentListSlice = createSlice({
     removeComment(state, action){
       const index = state.comments.findIndex(comments =>  comments.id === action.payload);
       state.comments.splice(index,1);
-      console.log(action.payload)
       axios.delete(`http://localhost:3001/comments/${action.payload}`);
-  }
+    },
+   /*  updataComment: (state, action) => {
+
+      axios.patch(`http://localhost:3001/comments/${action.payload.id}`, action.payload)
+    } */
+
   },
+
+  // extraReducer 기능 구현은 됬지만, 사용은 하지않았음
   extraReducers: {
     // 댓글 추가
     [__addComment.fulfilled]: (state, action) => {
@@ -101,7 +107,7 @@ export const commentListSlice = createSlice({
       state.error = action.payload; // catch 된 error 객체를 state.error에 넣습니다.
     },
     
-    // 댓글 삭제
+    /* // 댓글 삭제
     [__deleteComment.fulfilled]: (state, action) => {
       state.comments.splice(action.payload, 1);
     },
@@ -121,9 +127,10 @@ export const commentListSlice = createSlice({
     [__editComment.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
-    },
+    }, */
   }  
 });
 
-export const { removeComment } = commentListSlice.actions;
+
+export const { removeComment,updataComment } = commentListSlice.actions;
 export default commentListSlice.reducer;
