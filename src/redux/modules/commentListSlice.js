@@ -5,7 +5,7 @@ export const __getComment = createAsyncThunk(
   "GET_COMMENT",
   async (payload, thunkAPI) => {
     try {
-      const data = await axios.get("http://localhost:3001/comments");
+      const data = await axios.get(`${VUE_APP_SERVER}comments`);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -18,7 +18,7 @@ export const __addComment = createAsyncThunk(
   "ADD_COMMENT",
   async (arg, thunkAPI) => {
     try {
-      const { data } = await axios.post("http://localhost:3001/comments", arg);
+      const { data } = await axios.post(`${VUE_APP_SERVER}comments`, arg);
       return thunkAPI.fulfillWithValue(data);
     } catch (e) {
       return thunkAPI.rejectWithValue(e);
@@ -52,7 +52,7 @@ export const commentListSlice = createSlice({
       const index = state.comments.findIndex(comments =>  comments.id === action.payload);
       state.comments.splice(index,1);
       console.log(action.payload)
-      axios.delete(`http://localhost:3001/comments/${action.payload}`);
+      axios.delete(`${VUE_APP_SERVER}comments/${action.payload}`);
   }
   },
   extraReducers: {

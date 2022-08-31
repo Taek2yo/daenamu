@@ -10,10 +10,9 @@ function Card ( {card} ) {
     return (
 
         <CdContainer onClick={() => { history.push(`/detail/${card.id}`);}}>
-            
             <CdDialog>
-            <div>{card.title}</div>
-            <div>{card.desc}</div>
+            <CdTitle>{card.title}</CdTitle>
+            <CdDesc>{card.desc}</CdDesc>
             </CdDialog>
             <CdInfo>
             <div>작성자: {card.name}</div>
@@ -41,14 +40,33 @@ const CdContainer = styled.div`
 
 const CdDialog = styled.div`
     display: block;
-    padding: 1em;
+    padding: 1em 1em 0.5em 1em;
+`
+
+const CdTitle = styled.div`
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+`
+
+const CdDesc = styled.div`
+    font-size: 13px;
+    font-weight: 400;
+    color: grey;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
 `
 
 const CdInfo = styled.div`
     display: flex;
     justify-content: flex-end;
-    padding: 0 2em;
+    padding: 0 2em 0 0 ;
     font-size: small;
-    gap: 20px;
     color: #33691E;
 `
