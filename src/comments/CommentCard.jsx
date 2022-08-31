@@ -1,26 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import { deleteComment } from "../redux/modules/commentListSlice";
+import { __deleteComment,__editComment } from "../redux/modules/commentListSlice";
 
 
 function CommentCard({ comment }) {
   const {id} = useParams();
   const dispatch = useDispatch();
+  const [updatedComment, setUpdatedComment] = useState("");
   
-  const onRemove = () => {
-    if (window.confirm("정말 삭제합니까?")) {
-      alert("삭제되었습니다.");
-      dispatch(
-        deleteComment(id));
-  } else {
-      alert("취소합니다.");
+  const handleDelete =()=>{
+    const reulst = window.confirm("삭제하시겠습니까?");
+    if (reulst) {
+      dispatch(__deleteComment(comment.id))
+    } else {
+      return;
+    }
   }
 
-  }
-  
-  
+ /*  const handleEdit = () =>{
+    dispatch(
+      __editComment({
+        id: comment.id,
+        content: updatedComment,
+        username: comment.username,
+        cardId : id,
+      })
+    )
+  } */
+
   return (
     <CommentContainer>
       <Comment>
@@ -28,10 +37,9 @@ function CommentCard({ comment }) {
         <div>댓글 : {comment.content}</div>
       </Comment>
       <Btns>
-        <button
-          onClick = {()=>{onRemove()}}
+        <button onClick={handleDelete}
         >삭제하기</button>
-
+        
         <button>수정하기</button>
       </Btns>
     </CommentContainer>

@@ -14,7 +14,7 @@ function CardDetail() {
 
     const history = useHistory()
     const dispatch = useDispatch();
-    const {error, cards} = useSelector((state) => state.post);
+    const { cards } = useSelector((state) => state.post);
 
     useEffect(() => {
         dispatch(__getPosts());
@@ -22,7 +22,7 @@ function CardDetail() {
 
 
     let {id} = useParams();
-    let cardIdex = cards.find(function(x){return x.id == id})
+    let cardIdex = cards.find(function(x){return x.id === id})
     
 
     const onRemove = () => {

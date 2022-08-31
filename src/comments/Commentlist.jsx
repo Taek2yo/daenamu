@@ -13,12 +13,11 @@ const CommentList = () => {
     
     useEffect(() => {
         dispatch(__getComment());
-    }, []);
+    }, [dispatch]);
 
-    useEffect(()=>{console.log(comments)},[comments]
-        
-    )
+    useEffect(()=>{},[comments])
     
+
     if (isLoading) {
         return <>로딩중..</>
     }
