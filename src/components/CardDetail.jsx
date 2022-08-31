@@ -40,15 +40,20 @@ function CardDetail( ) {
     return (
         <>
             <DetailBox>
-                <h3>name: {cardIdex?.name}</h3>
-                <h3>title: {cardIdex?.title}</h3>
-                <h3>desc: {cardIdex?.desc}</h3>
+                <h2>작성자</h2> 
+                <p>{cardIdex?.name}</p>
+                <h2>제목</h2>
+                <p>{cardIdex?.title}</p>
+                <h2>내용</h2>
+                <p>{cardIdex?.desc}</p>
+                <Butbox>
                 <Button onClick = {()=>{history.push(`/edit/${id}`)}}>수정하기</Button>
                 <Button onClick={() => { onRemove() }}>삭제하기</Button>
+                </Butbox>
 
             </DetailBox>
 
-            <CommentList />
+            <CommentList/>
 
         </>
 
@@ -64,3 +69,10 @@ const DetailBox = styled.div`
             margin-top:30px;
             padding: 30px;
             `
+
+const Butbox = styled.div`
+        margin-top: 120px;
+        margin-left : 980px ;
+        display: flex;
+        
+`

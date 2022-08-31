@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { removeComment,updataComment } from "../redux/modules/commentListSlice";
+import { BsFillTrashFill } from "react-icons/bs";
+import { AiFillEdit } from "react-icons/ai";
+import { BsCheckLg } from "react-icons/bs";
+import { RiArrowGoBackFill } from "react-icons/ri";
+import { removeComment , updataComment } from "../redux/modules/commentListSlice";
 
 
 function CommentCard({ comment }) {
@@ -18,61 +22,57 @@ function CommentCard({ comment }) {
         removeComment(comment.id));
     } else {
       alert("취소합니다.");
-    }
   }
+}
+const handleClickUpdateBtn = () => {
+  setIsEdit(true);
+};
 
-  // 수정하기 버튼을 눌렀을때 true 로 변경
+const handleUpdateComment = () =>{
+  dispatch(updataComment({
+    id:comment.id,
+    content: desc,
+    username: comment.username,
+    comment : comment.comment
+  }),
+  setIsEdit(false))
+}
 
-  const handleClickUpdateBtn = () => {
-    setIsEdit(true);
-  };
-  
-  // 취소하기 버튼을 눌렀을때 false 로 변경
-  const handleClickCancleBtn = () => {
-    setIsEdit(false);
-  };
-
-
-  // 댓글 수정 완료 후 다시 댓글 상태
-  const handleUpdateComment = () =>{
-    dispatch(updataComment({
-      id:comment.id,
-      content: desc,
-      username: comment.username,
-      comment : comment.content
-    }),
-    setIsEdit(false))
-  }
+const handleClickCancleBtn = () => {
+  setIsEdit(false);
+};
   
   return (
-    <>
-      {isEdit ? 
-      (<>
-      <p>닉네임: {comment.username}</p>
-      <input
-        type={"text"}
-        onChange={(e) => setdesc(e.target.value)}
-      />
-      <button onClick={handleClickCancleBtn}>취소하기</button>
-      <button onClick={handleUpdateComment}>수정완료</button>
-      </>) 
+    <CommentContainer>
+        <Comment>
+          {comment.username} 
+        </Comment>
+        {isEdit ?
+        <Iinput type={"text"}
+        onChange={(e) => setdesc(e.target.value)}></Iinput> :
+        <Comment2>
+          {comment.content} 
+        </Comment2>}
+         
       
+      {isEdit ?
+      <Btns>
+        <button
+          onClick = {handleClickCancleBtn}
+        ><RiArrowGoBackFill /></button>
+        <button onClick={handleUpdateComment}><BsCheckLg /></button>
+      </Btns>
+      :
+      <Btns>
+        <button
+          onClick = {()=>{onRemove()}}
+        ><BsFillTrashFill /></button>
+        <button onClick={handleClickUpdateBtn}><AiFillEdit/></button>
+      </Btns> }
       
-      :(<CommentContainer>
-          <Comment>
-            <div>닉네임 :{comment.username} </div>
-            <div>댓글 : {comment.content}</div>
-          </Comment>
-          <Btns>
-            <button
-              onClick={() => { onRemove() }}
-            >삭제하기</button>
-            <button
-              onClick={handleClickUpdateBtn}
-            >수정하기</button>
-          </Btns>
-        </CommentContainer>)}
-    </>
+    </CommentContainer> 
+  
+  
   )
 }
 
@@ -82,15 +82,46 @@ export default CommentCard;
 const CommentContainer = styled.div`
     display: flex;
     justify-content: space-between;
+    margin-top: 40px;
+    height: auto;
     
-    border: 1px solid grey;
-    margin: 10px;
+    
 `
 
 const Comment = styled.div`
-    display: flex;
+    border-radius: 8px;
+    padding: 7px;
+    font-size: 14px;
+    border: 1px solid gray;
+    margin-left : 8px ;
+    width: 130px;
+    position: absolute;
+    
+   
+`
+const Comment2 = styled.div`
+   border: 1px solid gray;
+    border-radius: 8px;
+    padding: 7px;
+    font-size: 14px;
+    margin-left : 190px ;
+    width: 770px;
+    position: absolute;
+    
 `
 
 const Btns = styled.div`
-    
+    margin-left : 980px ;
+    padding: 7px;
+    position: absolute;
+    `
+
+const Iinput = styled.input`
+  border: 1px solid gray;
+    border-radius: 8px;
+    padding: 7px;
+    font-size: 14px;
+    margin-left : 190px ;
+    width: 770px;
+    position: absolute;
 `
