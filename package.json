@@ -2,6 +2,10 @@
   "name": "daenamu",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "16.x",
+    "yarn": "1.22"
+  },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.5",
     "@testing-library/jest-dom": "^5.16.5",
@@ -28,7 +32,7 @@
     "build": "cross-env NODE_PATH=src react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "heroku-postbuild": "cross-env NODE_PATH=src npm run build"
+    "heroku-postbuild": "cross-env NODE_PATH=src yarn build"
   },
   "eslintConfig": {
     "extends": [
