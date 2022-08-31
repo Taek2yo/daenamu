@@ -59,7 +59,6 @@ export const commentListSlice = createSlice({
     [__addComment.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.comments.push(action.payload);
-      console.log(action.payload)
     },
     
     [__addComment.rejected]: (state, action) => {

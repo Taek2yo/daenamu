@@ -14,7 +14,6 @@ function CardList() {
     const dispatch = useDispatch();
     const {error, cards} = useSelector((state) => state.post);
 
-    // console.log(cards)
 
     useEffect(() => {
         dispatch(__getPosts());

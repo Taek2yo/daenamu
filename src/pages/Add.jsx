@@ -19,9 +19,7 @@ function Add () {
     const [name, setname] = useState("");
     const [title, settitle] = useState("");
     const [desc, setdesc] = useState("");
-   
-      
-    // console.log(useSelector((state) => state.post))   
+ 
       
     function submit() {
         

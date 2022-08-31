@@ -65,13 +65,11 @@ export const postSlice = createSlice({
 
 
     [__deletePosts.pending]: (state, action) => {
-      console.log("진행중")
       state.isLoading = true
     },
     // fullflled 되었을 때, 서버에서 받아온 데이터를 state에 넣어줌!
     // 첫번째 파라미터는 redux의 state이고 두번째 파라미터는 action
     [__deletePosts.fulfilled]: (state, action) => {
-      console.log("완료")
       state.list = action.payload;
     },
     [__deletePosts.rejected]: (state, action) => {

@@ -30,7 +30,6 @@ function CardDetail( ) {
             dispatch(
                 __deletePosts(id));
             alert("삭제되었습니다.");
-            console.log("홈이동");
             history.push("/")
         } else {
             alert("취소합니다.");
