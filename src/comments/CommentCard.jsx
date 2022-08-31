@@ -7,6 +7,8 @@ import { removeComment,updataComment } from "../redux/modules/commentListSlice";
 function CommentCard({ comment }) {
   const dispatch = useDispatch();
   const [isEdit, setIsEdit] = useState(false);
+  const [desc,setdesc] = useState("");
+
 
   // 댓글 제거 함수
   const onRemove = () => {
@@ -31,10 +33,17 @@ function CommentCard({ comment }) {
   };
 
 
-  // 댓글 수정 완료
-  /* const handleUpdateComment = () =>{
-    dispatch(updataComment(comment.id))
-  } */
+  // 댓글 수정 완료 후 다시 댓글 상태
+  const handleUpdateComment = () =>{
+    dispatch(updataComment({
+      id:comment.id,
+      content: desc,
+      username: comment.username,
+      comment : comment.content
+    }),
+    setIsEdit(false))
+  }
+  
   return (
     <>
       {isEdit ? 
@@ -42,10 +51,10 @@ function CommentCard({ comment }) {
       <p>닉네임: {comment.username}</p>
       <input
         type={"text"}
-        
+        onChange={(e) => setdesc(e.target.value)}
       />
       <button onClick={handleClickCancleBtn}>취소하기</button>
-      <button>수정완료</button>
+      <button onClick={handleUpdateComment}>수정완료</button>
       </>) 
       
       
