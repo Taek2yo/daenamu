@@ -5,7 +5,7 @@ import styled from "styled-components";
 const Header = () => {
     const history = useHistory();
     return <StContainer>
-                <Stbutton onClick={() => { history.goBack("/");}}> 🏠 </Stbutton>
+                <Stbutton onClick={() => { history.push("/");}}> 🏠 </Stbutton>
                 <h3>캠프 대나무숲</h3>
            </StContainer>
 }

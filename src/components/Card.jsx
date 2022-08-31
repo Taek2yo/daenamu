@@ -8,6 +8,7 @@ function Card ( {card} ) {
     const history = useHistory();
 
     return (
+
         <CdContainer onClick={() => { history.push(`/detail/${card.id}`);}}>
             
             <CdDialog>

@@ -8,9 +8,7 @@ import CommentCard from "./CommentCard"
 const CommentList = () => {
     const dispatch = useDispatch();
     const { isLoading, error, comments } = useSelector((state) => state.commentlist);
-    const state = useSelector((state)=>state)
-    console.log(state)
-    
+   
     useEffect(() => {
         dispatch(__getComment());
     }, [dispatch]);

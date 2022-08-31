@@ -43,13 +43,13 @@ function Edit () {
     return (
         <Layout>
         <div>
-        <h2>작성자 : {cardIdex.name}</h2>
+        <h2>작성자 : {cardIdex?.name}</h2>
         
         
         <h2>제목</h2>
         <Input  
           type={"text"}
-          placeholder={cardIdex.title}
+          placeholder={cardIdex?.title}
           maxLength={20}
           onChange={(e) => settitle(e.target.value)} 
           ></Input>
@@ -57,7 +57,7 @@ function Edit () {
         <h2>내용</h2>
         <Textarea 
           rows="10"
-          placeholder={cardIdex.desc}
+          placeholder={cardIdex?.desc}
           onChange={(e) => setdesc(e.target.value)}
           />
         

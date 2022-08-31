@@ -3,11 +3,15 @@ import CardDetail from "../components/CardDetail"
 import Layout from "../components/Layout";
 
 
-function Detail () {
+
+function Detail() {
+
+    
     return (
         <Layout>
-            <CardDetail/>
+            <CardDetail />                    
         </Layout>
+
     )
 }
 
