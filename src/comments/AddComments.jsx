@@ -87,4 +87,5 @@ const Btnbox = styled.div`
 `
 const StAddComments = styled.form`
     align-items:center;
+    height: 20px
 `
